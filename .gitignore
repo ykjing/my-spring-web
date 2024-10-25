@@ -1,0 +1,13 @@
+
+
+*/target/*
+*/.mvn/*
+*/.settings/*
+*/mvnw*
+
+*.class
+*.classpath
+*.factorypath
+*.project
+*.gitattributes
+**/application.properties
