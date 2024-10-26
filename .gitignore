@@ -2,7 +2,7 @@
 
 */target/*
 */.mvn/*
-*/.settings/*
+*.settings/*
 */mvnw*
 
 *.class
