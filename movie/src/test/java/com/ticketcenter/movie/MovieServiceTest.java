@@ -27,7 +27,6 @@ import com.ticketcenter.movie.data.MovieRepository;
 import com.ticketcenter.movie.service.MovieService;
 
 
-
 @ExtendWith(MockitoExtension.class)
 class MovieServiceTest {
 	

@@ -12,6 +12,7 @@
     <modules>
         <module>movie</module>
         <module>user</module>
+        <module>seat</module>
     </modules>
 
 </project>

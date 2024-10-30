@@ -2,8 +2,9 @@ package com.ticketcenter.movie;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.ticketcenter.movie.data.Movie;
-import com.ticketcenter.movie.data.MovieRepository;
 import com.ticketcenter.movie.service.MovieService;
 
 @SpringBootTest
@@ -52,8 +50,8 @@ class MovieApplicationTests {
 		mvc.perform(get("/movie/155"))
 	    	.andDo(MockMvcResultHandlers.print())
 	    	.andExpect(status().isOk())
-	    	.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-	    	.andExpect(MockMvcResultMatchers.jsonPath("$.data.title").value("The Dark Knight"));	
+	    	.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+	    	.andExpect(jsonPath("$.data.title").value("The Dark Knight"));	
 	}
 	
 }
