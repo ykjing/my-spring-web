@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 //import lombok.Getter;
 //import lombok.Setter;
 //
@@ -20,10 +22,17 @@ import jakarta.persistence.Id;
 public class User {
 
 	@Id
+	@NotNull(message="\"id\" is required.")
+	@Size(max=25, message="Max length is 25.")
 	private String id;
 	
+	@NotNull(message="\"name\" is required.")
+	@Size(max=50, message="Max length is 50.")
 	private String name;
 	private String salt;
+	
+	@NotNull(message="\"password\" is required.")
+	@Size(max=20, message="Max length is 20.")
 	private String password;
 	private String email;
 	private String phone;
@@ -82,13 +91,14 @@ public class User {
 		this.phone = phone;
 	}
 
+	@JsonProperty
 	public Date getCreateDt() {
 		return createDt;
 	}
 
+	@JsonIgnore
 	public void setCreateDt(Date createDt) {
 		this.createDt = createDt;
 	}	
-	
 	
 }

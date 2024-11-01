@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticketcenter.user.secure.CodeUtils;
+
+import jakarta.validation.Valid;
+
 import com.ticketcenter.user.data.User;
 import com.ticketcenter.user.data.UserRepository;
 

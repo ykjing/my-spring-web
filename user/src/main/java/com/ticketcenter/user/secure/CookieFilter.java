@@ -6,28 +6,25 @@ import java.util.Base64;
 import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
-@Component
-@Order(value=1)
-@WebFilter(urlPatterns= {"/user/*"})
+
 public class CookieFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(CookieFilter.class);
 	
-	@Autowired
 	CookieService cookieServ;
+	
+	public CookieFilter(CookieService cookieServ) {
+		this.cookieServ = cookieServ;
+	}
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

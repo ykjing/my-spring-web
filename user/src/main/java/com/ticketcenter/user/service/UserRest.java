@@ -17,6 +17,9 @@ import com.ticketcenter.user.data.User;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @RestController
 @SecurityRequirement(name = "basicAuth") 
@@ -32,12 +35,12 @@ public class UserRest {
 	}
 	
 	@PostMapping
-	public User newUser(@RequestBody User user) {
+	public User newUser(@Valid @RequestBody User user) {
 		return userService.newUser( user);
 	}
 	
 	@PatchMapping("/password")
-	public String changePwd(@RequestBody UserPwdDto userPwd) {
+	public String changePwd(@Valid @RequestBody UserPwdDto userPwd) {
 		return userService.changePwd( userPwd.getId(), userPwd.getPassword());
 	}
 	
@@ -47,7 +50,11 @@ class UserPwdDto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull(message="\"id\" is required.")
 	private String id;
+	
+	@NotNull(message="\"password\" is required.")
+	@Size(max=20, message="Max length is 20.")
 	private String password;
 	
 	public String getId() {
