@@ -21,10 +21,7 @@ public class LoggerAOP {
 	
 	private final Logger logger = LoggerFactory.getLogger(LoggerAOP.class);
 	
-//	@Pointcut("execution(* com.ticketcenter.movie.bean.*.*(..))")
-//	public void cutBeanFunction() {}
-	
-	@Around("execution(* com.ticketcenter.movie.MovieSchduler.*(..)) || "
+	@Around("execution(* com.ticketcenter.movie.MovieScheduler.*(..)) || "
 			+ "execution(* com.ticketcenter.movie.service.*.*(..)) || "
 			+ "@annotation(LogExecution)")
 	public Object logTimeCost(ProceedingJoinPoint jp) throws Throwable {
@@ -37,15 +34,5 @@ public class LoggerAOP {
 		logger.info("[{}] End. Cost {} ms.", target, timeCost);
 		return res;
 	}
-	
-//	@Around("execution(* com.ticketcenter.movie.ScheduledTasks.*(..))")
-//	public void logScheduler(ProceedingJoinPoint jp) throws Throwable {
-//		Signature signature = jp.getSignature();
-//		logger.info("[{}] ScheduledTask Start.",signature.getName());
-//		Date startTime = new Date();
-//		jp.proceed();
-//		long timeCost = new Date().getTime() - startTime.getTime();
-//		logger.info("[{}] ScheduledTask End. Cost {} ms.", signature.getName(), timeCost);
-//	}
 	
 }
